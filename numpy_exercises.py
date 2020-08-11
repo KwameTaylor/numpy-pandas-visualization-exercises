@@ -6,6 +6,8 @@ a = np.array([4, 10, 12, 23, -2, -1, 0, 0, 0, -6, 3, -7])
 
 #Exercise 1
 print((a<0).sum())
+#maggie's alternate answer
+len(a[a < 0])
 
 #Exercise 2
 print((a>0).sum())
@@ -29,7 +31,7 @@ print((pos_and_even_nums).sum())
 
 #Exercise 4
 add_three_a = a + 3
-add_three_pos_nums = add_three_a % 2 == 0
+add_three_pos_nums = add_three_a > 0
 print(add_three_pos_nums.sum())
 
 #Exercise 5
@@ -88,6 +90,10 @@ odds_in_a = [n for n in a if n % 2 == 1]
 
 # Exercise 8 - Make a variable named evens_in_a. It should hold only the evens.
 evens_in_a = [n for n in a if n % 2 == 0]
+
+#
+#
+#
 
 ## What about life in two dimensions? A list of lists is matrix, a table, a spreadsheet, a chessboard...
 ## Setup 2: Consider what it would take to find the sum, min, max, average, sum, product, and list of squares for this list of two lists.
