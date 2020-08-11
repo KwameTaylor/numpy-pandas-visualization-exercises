@@ -186,21 +186,29 @@ c = [
 
 # HINT, you'll first need to make sure that the "c" variable is a numpy array prior to using numpy array methods.
 # Exercise 1 - Find the min, max, sum, and product of c.
+c = np.array(c)
+print(c.min(), c.max(), c.sum(), c.prod())
 
 # Exercise 2 - Determine the standard deviation of c.
+print(c.std())
 
 # Exercise 3 - Determine the variance of c.
+print(c.std()**2)
 
 # Exercise 4 - Print out the shape of the array c
+print(c.shape)
 
 # Exercise 5 - Transpose c and print out transposed result.
+print(c.T)
 
 # Exercise 6 - Get the dot product of the array c with c. 
+print(c.dot(c))
 
 # Exercise 7 - Write the code necessary to sum up the result of c times c transposed. Answer should be 261
+print((c * c.T).sum())
 
 # Exercise 8 - Write the code necessary to determine the product of c times c transposed. Answer should be 131681894400.
-
+print((c * c.T).prod())
 
 ## Setup 4
 d = [
@@ -210,25 +218,36 @@ d = [
 ]
 
 # Exercise 1 - Find the sine of all the numbers in d
+d = np.array(d)
+np.sin(d)
 
 # Exercise 2 - Find the cosine of all the numbers in d
+np.cos(d)
 
 # Exercise 3 - Find the tangent of all the numbers in d
+np.tan(d)
 
 # Exercise 4 - Find all the negative numbers in d
+d[d < 0]
 
 # Exercise 5 - Find all the positive numbers in d
+d[d > 0]
 
 # Exercise 6 - Return an array of only the unique numbers in d.
+np.unique(d)
 
 # Exercise 7 - Determine how many unique numbers there are in d.
+len(np.unique(d))
+np.unique(d).size
 
 # Exercise 8 - Print out the shape of d.
+print(d.shape)
 
 # Exercise 9 - Transpose and then print out the shape of d.
+print(d.T.shape)
 
 # Exercise 10 - Reshape d into an array of 9 x 2
-
+print(d.reshape(9, 2))
 
 
 
