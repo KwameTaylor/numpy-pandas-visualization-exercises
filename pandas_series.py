@@ -54,9 +54,51 @@ print('Min: ')
 print(money_series_float.min())
 money_series_bins = pd.cut(money_series_float, 4)
 print(money_series_bins)
-#plt.hist(money_series_bins)
-#plt.show()
-#not sure why the histo isn't plotting... come back to this later
-#TypeError: unorderable types: Interval() < float()
+plt.hist(money_series_float)
+plt.show()
+#not sure why the histo isn't plotting with the bins... come back to this later
+#TypeError: unorderable types: Interval() < float() when i try to plt.hist(money_series_bins)
 
 #Exercise 3
+exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78])
+print('Max exam score: ')
+print(exam_scores.max())
+print('Mean exam score: ')
+print(exam_scores.mean())
+print('Median exam score: ')
+print(exam_scores.median())
+plt.hist(exam_scores)
+plt.show()
+def num_grade(score):
+    if score >= 88:
+        return "A"
+    elif 80 <= score < 88:
+        return "B"
+    elif 67 <= score < 80:
+        return "C"
+    elif 60 <= score < 67:
+        return "D"
+    else:
+        return "F"
+exam_grades = exam_scores.apply(num_grade)
+print(exam_grades)
+curve_diff = 100 - int(exam_scores.max())
+exam_scores_curved = exam_scores + curve_diff
+exam_grades_curved = exam_scores_curved.apply(num_grade)
+print('Exam scores curved: ')
+print(exam_scores_curved)
+print('Exam grades curved: ')
+print(exam_grades_curved)
+
+#Exercise 4
+string_series = pd.Series('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy')
+string_series = string_series.str.extractall("(.)")
+print(string_series)
+print('Most freq occuring letter: ')
+print('Least freq occuring letter: ')
+print('Vowel count: ')
+print('Consonant count: ')
+#now create a version of the series that is uppercased
+#create a bar plot of the freqs of the 6 most freq occuring letters
+
+#Exercise 5
