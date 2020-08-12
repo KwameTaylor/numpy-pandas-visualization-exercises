@@ -93,11 +93,17 @@ print(exam_grades_curved)
 #Exercise 4
 string_series = pd.Series('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy')
 string_series = string_series.str.extractall("(.)")
+vowels = list('aeiou')
+consonants = list('bcdfghjklmnpqrstvwxyz')
 print(string_series)
 print('Most freq occuring letter: ')
+print(string_series.mode())
 print('Least freq occuring letter: ')
+#print(string_series.value_counts().tail(1))
 print('Vowel count: ')
+print(string_series[letters_series.isin(vowels)])
 print('Consonant count: ')
+#print(string_series[string_series.isin('aeiou')])
 #now create a version of the series that is uppercased
 #create a bar plot of the freqs of the 6 most freq occuring letters
 
