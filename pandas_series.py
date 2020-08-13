@@ -196,11 +196,21 @@ negative_numbers = numbers[numbers < 0]
 print(negative_numbers)
 
 # Exercise 14 - use pandas w/ a conditional in order to produce a list of numbers with 2 or more numerals
+numbers_absolute = numbers.abs()
+print(numbers_absolute[numbers_absolute.astype(str).str.len() >= 2])
 
 # Exercise 15 - Make a variable named numbers_squared that contains the numbers list with each element squared. Output is [4, 9, 16, etc...]
+numbers_squared = numbers ** 2
+print(numbers_squared)
 
 # Exercise 16 - Make a variable named odd_negative_numbers that contains only the numbers that are both odd and negative.
+odd_negative_numbers = numbers[(numbers % 2 != 0) & (numbers < 0)]
+print(odd_negative_numbers)
 
 # Exercise 17 - Make a variable named numbers_plus_5. In it, return a list containing each number plus five. 
+numbers_plus_5 = numbers + 5
+print(list(numbers_plus_5))
 
 # BONUS Make a variable named "primes" that is a list containing the prime numbers in the numbers list. *Hint* you may want to make or find a helper function that determines if a given number is prime or not.
+primes = list(numbers[numbers.apply(lambda n: all(n % i != 0 for i in range(2, n)) and n > 0)])
+print(primes)
