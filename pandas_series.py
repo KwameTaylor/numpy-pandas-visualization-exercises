@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #Exercise 1
+print(' \n \n Exercise 1 \n')
 #a
 fruits = pd.Series(["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", "watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", "gooseberry", "papaya"])
 print('Fruits series: ')
@@ -31,17 +32,19 @@ print(fruits.str.count('a'))
 #k
 print(fruits.str.count('[aeiou]'))
 #l
-#come back to this one later
+#first try commented
 #contains_two_or_more_o_count = 0
 #print(fruits.apply(lambda n: n.str.contains('[%o%o%]')))
+print(fruits[fruits.apply(lambda fruit: fruit.count('o') > 1)])
 #m
 print(fruits[fruits.str.contains('berry')])
 #n
 print(fruits[fruits.str.contains('apple')])
 #o
-print(fruits[fruits.str.count('[aeiou]')].max())
+print(fruits[(fruits.str.count('[aeiou]')).idxmax()])
 
 #Exercise 2
+print(' \n \n Exercise 2 \n')
 money_series = pd.Series(['$796,459.41', '$278.60', '$482,571.67', '$4,503,915.98', '$2,121,418.3', '$1,260,813.3', '$87,231.01', '$1,509,175.45', '$4,138,548.00', '$2,848,913.80', '$594,715.39', '$4,789,988.17', '$4,513,644.5', '$3,191,059.97', '$1,758,712.24', '$4,338,283.54', '$4,738,303.38', '$2,791,759.67', '$769,681.94', '$452,650.23'])
 print(type(money_series))
 money_series_float = money_series.str.replace('$', '')
@@ -53,13 +56,13 @@ print(money_series_float.max())
 print('Min: ')
 print(money_series_float.min())
 money_series_bins = pd.cut(money_series_float, 4)
-print(money_series_bins)
-plt.hist(money_series_float)
+pd.cut(money_series_float, 4).value_counts().sort_index(ascending=False).plot(kind='barh', color = 'thistle', ec='black', width=1)
+plt.title('4 Bins to Rule Them All')
+plt.xlabel('Count')
 plt.show()
-#not sure why the histo isn't plotting with the bins... come back to this later
-#TypeError: unorderable types: Interval() < float() when i try to plt.hist(money_series_bins)
 
 #Exercise 3
+print(' \n \n Exercise 3 \n')
 exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78])
 print('Max exam score: ')
 print(exam_scores.max())
@@ -91,6 +94,11 @@ print('Exam grades curved: ')
 print(exam_grades_curved)
 
 #Exercise 4
+
+#faiths version
+#string_list = string.replace('', ' ').strip().split(' ')
+
+print(' \n \n Exercise 4 \n')
 string_series = pd.Series('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy')
 string_series = string_series.str.extractall("(.)")
 vowels = list('aeiou')
@@ -101,18 +109,18 @@ print(string_series.mode())
 print('Least freq occuring letter: ')
 #print(string_series.value_counts().tail(1))
 print('Vowel count: ')
-#print(string_series[string_series.isin(vowels)])
+#print(string_seriesstring_series.str.lower().str.count('[aeiou]').sum())
 print('Consonant count: ')
 #print(string_series[string_series.isin('aeiou')])
 #now create a version of the series that is uppercased
 #create a bar plot of the freqs of the 6 most freq occuring letters
-
-#
-#
-#
+#string_series.value_counts().head(6).plot(kind='barh', width=.8)
+#plt.title('Top 6 Letters')
+#plt.show()
 
 #Exercise 5
-#Complete the exercises from https://gist.github.com/ryanorsinger/f7d7c1dd6a328730c04f3dc5c5c69f3a,
+print(' \n \n Exercise 5 \n')
+#Complete the exercises from 
 # but use pandas Series for the data structure instead of lists and use Series subsetting/indexing
 # and vectorization options instead of loops and lists.
 
@@ -144,32 +152,48 @@ print(uppercased_fruits)
 capitalized_fruits = fruits.str.capitalize()
 print(capitalized_fruits)
 
-#
-# my student walkthrough 
-#
 # Exercise 3 - Use pandas to make a variable named fruits_with_more_than_two_vowels. Hint: You'll need a way to check if something is a vowel.
 fruits_with_more_than_two_vowels = fruits[fruits.str.count('[aeiou]') > 2]
 print(fruits_with_more_than_two_vowels)
 
 # Exercise 4 - make a variable named fruits_with_only_two_vowels. The result should be ['mango', 'kiwi', 'strawberry']
+fruits_with_only_two_vowels = fruits[fruits.str.count('[aeiou]') == 2]
+print(fruits_with_only_two_vowels)
 
 # Exercise 5 - make a list that contains each fruit with more than 5 characters
+fruits_str_len = fruits.str.len()
+print(fruits[fruits_str_len > 5])
 
 # Exercise 6 - make a list that contains each fruit with exactly 5 characters
+fruits_equal_to = fruits[fruits.str.len() == 5]
+print(fruits_equal_to)
 
 # Exercise 7 - Make a list that contains fruits that have less than 5 characters
+print(fruits[fruits_str_len < 5])
 
 # Exercise 8 - Make a list containing the number of characters in each fruit. Output would be [5, 4, 10, etc... ]
+print(fruits.str.len())
 
 # Exercise 9 - Make a variable named fruits_with_letter_a that contains a list of only the fruits that contain the letter "a"
+fruits_with_letter_a = fruits[fruits.str.contains('a')]
+print(fruits_with_letter_a)
 
 # Exercise 10 - Make a variable named even_numbers that holds only the even numbers 
+numbers = pd.Series([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 17, 19, 23, 256, -8, -4, -2, 5, -9])
+even_numbers = numbers[numbers % 2 == 0]
+print(even_numbers)
 
 # Exercise 11 - Make a variable named odd_numbers that holds only the odd numbers
+odd_numbers = numbers[numbers % 2 != 0]
+print(odd_numbers)
 
 # Exercise 12 - Make a variable named positive_numbers that holds only the positive numbers
+positive_numbers = numbers[numbers > 0]
+print(positive_numbers)
 
 # Exercise 13 - Make a variable named negative_numbers that holds only the negative numbers
+negative_numbers = numbers[numbers < 0]
+print(negative_numbers)
 
 # Exercise 14 - use pandas w/ a conditional in order to produce a list of numbers with 2 or more numerals
 
