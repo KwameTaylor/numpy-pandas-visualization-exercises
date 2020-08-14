@@ -5,3 +5,5 @@ pandas_series_exercise_5.py
 Untitled.ipynb
 big_o_notation.ipynb
 matplotlib_exercises.ipynb
+__pycache__/
+matplotlib_exercises_ver2.ipynb
